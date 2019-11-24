@@ -154,6 +154,9 @@ class PyTorchClassifier(object):
                     probas = np.concatenate(probas, vals, axis=0)
         return probas
 
+    def save_model(self, path):
+        torch.save(self.model.state_dict(), path)
+
 
 """
 MLP with Pytorch (nhid=0 --> Logistic Regression)
