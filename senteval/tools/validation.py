@@ -238,7 +238,7 @@ class SplitClassifier(object):
             clf.fit(self.X['train'], self.y['train'],
                     validation_data=(self.X['valid'], self.y['valid']))
 
-            clf.save_model('./saved_snli.pth')
+            clf.save_model('./saved_snli_100k.pth')
         else:
             clf = LogisticRegression(C=optreg, random_state=self.seed)
             clf.fit(self.X['train'], self.y['train'])
