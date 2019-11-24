@@ -237,6 +237,8 @@ class SplitClassifier(object):
             # TODO: Find a hack for reducing nb epoches in SNLI
             clf.fit(self.X['train'], self.y['train'],
                     validation_data=(self.X['valid'], self.y['valid']))
+
+            clf.save_model('./saved_snli.pth')
         else:
             clf = LogisticRegression(C=optreg, random_state=self.seed)
             clf.fit(self.X['train'], self.y['train'])
