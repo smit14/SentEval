@@ -24,10 +24,10 @@ class SNLIEval(object):
     def __init__(self, taskpath, seed=1111):
         logging.debug('***** Transfer task : SNLI Entailment*****\n\n')
         self.seed = seed
-        train1 = self.loadFile(os.path.join(taskpath, 's1_200k.train'))
-        train2 = self.loadFile(os.path.join(taskpath, 's2_200k.train'))
+        train1 = self.loadFile(os.path.join(taskpath, 's1_augment.train'))
+        train2 = self.loadFile(os.path.join(taskpath, 's2_augment.train'))
 
-        trainlabels = io.open(os.path.join(taskpath, 'labels_200k.train'),
+        trainlabels = io.open(os.path.join(taskpath, 'labels_augment.train'),
                               encoding='utf-8').read().splitlines()
 
         valid1 = self.loadFile(os.path.join(taskpath, 's1.dev'))
