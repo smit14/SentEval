@@ -16,7 +16,8 @@ len_yes = len(yes_list)
 len_no = len(no_list)
 len_cnt = len(cnt_list)
 
-final_len = min(len_yes,min(len_no,len_cnt))
+# final_len = min(len_yes,min(len_no,len_cnt))
+final_len = 100
 
 data_dict = {}
 data_dict['yes'] = yes_list[:final_len]
@@ -60,15 +61,15 @@ for i in range(3):
         labels += labels_list
 
 
-first_n = 100000
+first_n = 80000
 
-with open('s1.train') as f:
+with open('./SNLI/s1.train') as f:
     init_s1 = f.readlines()
 
-with open('s2.train') as f:
+with open('./SNLI/s2.train') as f:
     init_s2 = f.readlines()
 
-with open('labels.train') as f:
+with open('./SNLI/labels.train') as f:
     init_labels = f.readlines()
 
 init_s1 = init_s1[:first_n]
@@ -80,14 +81,14 @@ init_s2 += s2
 init_labels += labels
 
 
-w = open("s1_augment.train", 'w')
+w = open("./SNLI/s1_augment.train", 'w')
 w.writelines([items for items in init_s1])
 w.close()
 
-w = open("s2_augment.train", 'w')
+w = open("./SNLI/s2_augment.train", 'w')
 w.writelines([items for items in init_s2])
 w.close()
 
-w = open("labels_augment.train", 'w')
+w = open("./SNLI/labels_augment.train", 'w')
 w.writelines([items for items in init_labels])
 w.close()
