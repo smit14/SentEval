@@ -28,14 +28,14 @@ s1,s2,labels = [],[],[]
 def get_label(str1, str2):
     if (str1=='yes' and str2=='yes') or (str1=='no' and str2=='no') or (str1=='cnt' and str2=='cnt'):
         return 'entailment'
-    if (str1=='yes' and str2=='no'):
+    if (str1=='yes' and str2=='no') or (str2=='yes' and str1=='no'):
         return 'contradiction'
-    if (str1=='yes' and str2=='cnt') or (str1=='no' and str2=='cnt'):
+    if (str1=='yes' and str2=='cnt') or (str1=='no' and str2=='cnt') or (str2=='yes' and str1=='cnt') or (str2=='no' and str1=='cnt'):
         return 'neutral'
 
 keys_list = ['yes','no','cnt']
 for i in range(3):
-    for j in range(i,3):
+    for j in range(3):
         list1 = data_dict[keys_list[i]]
         list2 = data_dict[keys_list[j]]
         label = get_label(keys_list[i], keys_list[j])
@@ -81,14 +81,14 @@ init_s2 += s2
 init_labels += labels
 
 
-w = open("./SNLI/s1_augment.train", 'w')
+w = open("./SNLI/s1_augment_ordered.train", 'w')
 w.writelines([items for items in init_s1])
 w.close()
 
-w = open("./SNLI/s2_augment.train", 'w')
+w = open("./SNLI/s2_augment_ordered.train", 'w')
 w.writelines([items for items in init_s2])
 w.close()
 
-w = open("./SNLI/labels_augment.train", 'w')
+w = open("./SNLI/labels_augment_ordered.train", 'w')
 w.writelines([items for items in init_labels])
 w.close()
