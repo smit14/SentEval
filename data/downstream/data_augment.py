@@ -17,7 +17,7 @@ len_no = len(no_list)
 len_cnt = len(cnt_list)
 
 # final_len = min(len_yes,min(len_no,len_cnt))
-final_len = 70
+final_len = 65
 
 data_dict = {}
 data_dict['yes'] = yes_list[:final_len]
@@ -61,7 +61,7 @@ for i in range(3):
         labels += labels_list
 
 
-first_n = 70000
+first_n = 65000
 
 with open('./SNLI/s1.train') as f:
     init_s1 = f.readlines()
