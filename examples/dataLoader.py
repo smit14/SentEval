@@ -28,7 +28,7 @@ f = h5py.File(file_path,'r')
 print(f.keys())
 print(f['opt_train'].shape)
 print(f['ans_index_train'].shape)
-n = 1000 # datasize
+n = 8000 # datasize
 opt_list_train = f['opt_list_train'][:]                    # total_ans x 8
 opt_train = f['opt_train'][:n,:,:]                  # datasize x 10 x 100
 ans_index_train = f['ans_index_train'][:n,:]      # datasize x 10
