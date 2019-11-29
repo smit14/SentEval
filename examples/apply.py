@@ -6,7 +6,7 @@ import torch
 import logging
 import numpy as np
 from torch import nn
-# from senteval import utils
+
 np.set_printoptions(precision=4)
 np.set_printoptions(suppress=True)
 # get models.py from InferSent repo
@@ -26,7 +26,7 @@ assert os.path.isfile(MODEL_PATH) and os.path.isfile(PATH_TO_W2V), \
 # import senteval
 sys.path.insert(0, PATH_SENTEVAL)
 import senteval
-
+from senteval import utils
 
 def prepare(params, samples):
 	params.infersent.build_vocab([' '.join(s) for s in samples], tokenize=False, is_small=True)
