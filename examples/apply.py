@@ -6,7 +6,7 @@ import torch
 import logging
 import numpy as np
 from torch import nn
-from senteval import utils
+# from senteval import utils
 np.set_printoptions(precision=4)
 np.set_printoptions(suppress=True)
 # get models.py from InferSent repo
