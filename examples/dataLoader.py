@@ -28,7 +28,7 @@ f = h5py.File(file_path,'r')
 print(f.keys())
 print(f['opt_train'].shape)
 print(f['ans_index_train'].shape)
-n = 10 # datasize
+n = 1000 # datasize
 opt_list_train = f['opt_list_train'][:]                    # total_ans x 8
 opt_train = f['opt_train'][:n,:,:]                  # datasize x 10 x 100
 ans_index_train = f['ans_index_train'][:n,:]      # datasize x 10
@@ -53,7 +53,7 @@ gt_list = decode_text(itow, gt_ans)
 gt2_list = [gt for gt in gt_list for j in range(100)]
 opt_list = decode_text(itow, opt_ans)
 
-batch_size = 2000
+batch_size = 10000
 n = len(opt_list)
 
 #open file - visdial_data_probs.h5
