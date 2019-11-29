@@ -14,6 +14,7 @@ import time
 
 import torch
 import torch.nn as nn
+import json
 
 
 class InferSent(nn.Module):
@@ -112,6 +113,21 @@ class InferSent(nn.Module):
         print('Found %s(/%s) words with w2v vectors' % (len(word_vec), len(word_dict)))
         return word_vec
 
+    ##############################################################################################
+
+    def get_w2v_small(self, word_dict):
+        assert hasattr(self, 'w2v_path'), 'w2v path not set'
+        # create word_vec with w2v vectors
+        word_vec = {}
+        glove_small = json.load(open(self.w2v_path))
+        for word in glove_small.keys():
+            if word in word_dict:
+                word_vec[word] = np.array(glove_small[word])
+        print('Found %s(/%s) words with w2v vectors' % (len(word_vec), len(word_dict)))
+        return word_vec
+
+    ##############################################################################################
+
     def get_w2v_k(self, K):
         assert hasattr(self, 'w2v_path'), 'w2v path not set'
         # create word_vec with k first w2v vectors
@@ -131,10 +147,14 @@ class InferSent(nn.Module):
                     break
         return word_vec
 
-    def build_vocab(self, sentences, tokenize=True):
+    def build_vocab(self, sentences, tokenize=True, is_small = False):
         assert hasattr(self, 'w2v_path'), 'w2v path not set'
         word_dict = self.get_word_dict(sentences, tokenize)
+        ####################################################################
         self.word_vec = self.get_w2v(word_dict)
+        if is_small:
+            self.word_vec = self.get_w2v_small(word_dict)
+        ####################################################################
         print('Vocab size : %s' % (len(self.word_vec)))
 
     # build w2v vocab with k most frequent words
