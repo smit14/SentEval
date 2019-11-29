@@ -76,5 +76,5 @@ for i in range(0, n, batch_size):
     log_probs = log_probs.reshape(-1,10,100)
     probs_data[ii:int(ii+batch_size/1000),:,:] = log_probs
     ii = ii+int(batch_size/1000)
-    print(time.time()-t)
+    print((time.time()-t)*(1000/batch_size))
     t= time.time()

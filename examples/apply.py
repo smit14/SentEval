@@ -69,7 +69,7 @@ def apply_logician(s1, s2 , is_list=False, sick_model = False):
 	params_senteval['classifier'] = {'nhid': 0, 'optim': 'rmsprop', 'batch_size': 128,
 									 'tenacity': 3, 'epoch_size': 2}
 
-	params_senteval['infersent'] = model.cpu()
+	params_senteval['infersent'] = model.cuda()
 
 	if not is_list:
 		s1 = convert_str2lst(s1)
@@ -89,14 +89,14 @@ def apply_logician(s1, s2 , is_list=False, sick_model = False):
 		print('[Contradiction  Neutral  Entailment]')
 	else:
 		testF = np.c_[emb_s1, emb_s2, emb_s1 * emb_s2, np.abs(emb_s1 - emb_s2)]
-		cp = torch.load('./saved_snli_augment_ordered.pth', map_location=torch.device('cpu'))
+		cp = torch.load('./saved_snli_augment_ordered.pth')
 		print('[ Entailment  Neutral Contradiction ]')
 	inputdim = testF.shape[1]
 	nclasses = 3
-	clf = nn.Sequential(nn.Linear(inputdim, nclasses),).cpu()
+	clf = nn.Sequential(nn.Linear(inputdim, nclasses),).cuda()
 	clf.load_state_dict(cp)
 
-	testF = torch.FloatTensor(testF).cpu()
+	testF = torch.FloatTensor(testF).cuda()
 	out = clf(testF)
 	sf = nn.Softmax(1)
 	probs = sf(out)
