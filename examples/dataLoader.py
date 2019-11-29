@@ -71,7 +71,7 @@ for i in range(0, n, batch_size):
     opt = opt_list[start:end]
 
     probs = apply_logician(gt,opt, is_list=True)
-    probs = probs.detach().numpy()
+    probs = probs.cpu().detach().numpy()
     log_probs = 10000*((probs[:,0]*10000).astype(int)) + (probs[:,1]*10000).astype(int)
     log_probs = log_probs.reshape(-1,10,100)
     probs_data[ii:int(ii+batch_size/1000),:,:] = log_probs
